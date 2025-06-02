@@ -5,14 +5,10 @@ import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({
-    super.key,
-    required this.meal,
-    required this.onToggleFavorite,
-  });
+  const MealItem({super.key, required this.meal});
 
   final Meal meal;
-  final void Function(Meal meal) onToggleFavorite;
+
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
@@ -33,21 +29,20 @@ class MealItem extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder:
-                  (context) =>
-                      MealDeet(meal: meal, onToggleFavorite: onToggleFavorite),
-            ),
+            MaterialPageRoute(builder: (context) => MealDeet(meal: meal)),
           );
         },
         child: Stack(
           children: [
-            FadeInImage(
-              height: 150,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                height: 150,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+              ),
             ),
             Positioned(
               right: 0,
