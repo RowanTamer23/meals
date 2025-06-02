@@ -92,16 +92,14 @@ class MealDeet extends ConsumerWidget {
             SizedBox(height: 10),
             for (final step in meal.steps)
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50,
-                  vertical: 8,
-                ),
+                padding: const EdgeInsets.fromLTRB(50, 8, 50, 8),
                 child: Text(
                   step,
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
+            SizedBox(height: 40),
           ],
         ),
       ),
